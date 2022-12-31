@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import Button from "../button/button.component";
 
 import FormInput from "../form-input/form-input.components";
-import {  createAuthUserWithEmailAndpassword, createUserDocumentFromauth } from '../../utility/firebase/firebase.utility'
+import {  createAuthUserwithEmailandpassword, createUserDocumentFromauth } from '../../utility/firebase/firebase.utility'
 
 import { UserContext } from "../../context/user.context";
 
@@ -14,8 +14,8 @@ const defaultFormfields = {
     displayName: '',
     email:'',
     password:'',
-    confirmPassword:''
-}
+    confirmPassword:'',
+};
 
 
 
@@ -36,10 +36,13 @@ const SignUpForm = () => {
         }
 
         try {
-            const { user } = await createAuthUserWithEmailAndpassword(email, password);
+            const { user } = await createAuthUserwithEmailandpassword(
+                email, 
+                password
+                );
            
         
-            await createUserDocumentFromauth(user, { displayName })
+            await createUserDocumentFromauth(user, { displayName });
             resetFormfields();
         
         } catch(error) {
@@ -53,6 +56,8 @@ const SignUpForm = () => {
         }
 
     }
+
+    console.log(formFields);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -69,7 +74,7 @@ const SignUpForm = () => {
                 <FormInput 
                 label="Display Name"
                 type="text" 
-                required 
+                required=""
                 onChange={handleChange} 
                 name='displayName' 
                 value={displayName} />
@@ -78,7 +83,7 @@ const SignUpForm = () => {
                 <FormInput 
                 label="Email"
                 type="email" 
-                required 
+                required=""
                 onChange={handleChange} 
                 name='email' 
                 value={email} />
@@ -87,7 +92,7 @@ const SignUpForm = () => {
                 <FormInput 
                 label="Password"
                 type="password" 
-                required 
+                required=""
                 onChange={handleChange} 
                 name='password' 
                 value={password} />
@@ -96,7 +101,7 @@ const SignUpForm = () => {
                 <FormInput 
                 label="Confirm Password"
                 type="password" 
-                required 
+                required=""
                 onChange={handleChange} 
                 name='confirmPassword' 
                 value={confirmPassword} />

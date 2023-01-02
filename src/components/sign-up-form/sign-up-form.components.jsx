@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import Button from "../button/button.component";
 
 import FormInput from "../form-input/form-input.components";
-import {  createAuthUserwithEmailandpassword, createUserDocumentFromauth } from '../../utility/firebase/firebase.utility'
+import {  createAuthUserwithEmailandpassword, createUserDocAuth } from '../../utility/firebase/firebase.utility'
 
 import { UserContext } from "../../context/user.context";
 
@@ -42,7 +42,7 @@ const SignUpForm = () => {
                 );
            
         
-            await createUserDocumentFromauth(user, { displayName });
+            await createUserDocAuth(user, { displayName });
             resetFormfields();
         
         } catch(error) {
@@ -70,7 +70,7 @@ const SignUpForm = () => {
             <h2>Don't have an Account?</h2>
             <span>Sign Up with Email and Password</span>
             <form onSubmit={handleSubmit}>
-                <label>Display Name</label>
+              
                 <FormInput 
                 label="Display Name"
                 type="text" 
@@ -79,7 +79,6 @@ const SignUpForm = () => {
                 name='displayName' 
                 value={displayName} />
 
-                <label>Email</label>
                 <FormInput 
                 label="Email"
                 type="email" 
@@ -88,7 +87,6 @@ const SignUpForm = () => {
                 name='email' 
                 value={email} />
 
-                <label>Password</label>
                 <FormInput 
                 label="Password"
                 type="password" 
@@ -97,7 +95,6 @@ const SignUpForm = () => {
                 name='password' 
                 value={password} />
 
-                <label>Confirm Password</label>
                 <FormInput 
                 label="Confirm Password"
                 type="password" 
